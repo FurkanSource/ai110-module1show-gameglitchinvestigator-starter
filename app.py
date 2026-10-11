@@ -30,6 +30,7 @@ def parse_guess(raw: str):
 
 
 def check_guess(guess, secret):
+    # FIXME: Numeric comparisons and hint directions need consistent behavior.
     if guess == secret:
         return "Win", "🎉 Correct!"
 
@@ -132,6 +133,7 @@ with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
 if new_game:
+    # FIXME: Reset the entire round and honor the active difficulty range.
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
     st.success("New game started.")

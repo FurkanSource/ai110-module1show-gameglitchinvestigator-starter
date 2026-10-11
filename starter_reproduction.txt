@@ -1,0 +1,14 @@
+Original starter bug reproduction; run by Codex, not the student.
+check_guess(60, 50) = ('Too High', '📈 Go HIGHER!')
+check_guess(9, '50') = ('Too High', '📈 Go HIGHER!')
+check_guess(100, '50') = ('Too Low', '📉 Go LOWER!')
+parse_guess('3.9') = (True, 3, None)
+update_score(0, 'Too High', 2) = 5
+Game 1: Normal, controlled secret=50
+Initial banner: Guess a number between 1 and 100. Attempts left: 7
+Guess 9 -> Go HIGHER!; attempts=2, score=5
+Guess 50 -> status=won; success=['You won! The secret was 50. Final score: 65']
+New Game -> status=won; history=[9, 50]; success=['You already won. Start a new game to play again.']
+Game 2: Normal, controlled secret=50
+Nine invalid guesses -> status=playing; attempts=10; error=That is not a number.; banner=Guess a number between 1 and 100. Attempts left: -1
+Switch to Easy -> secret=50; sidebar=['Range: 1 to 20', 'Attempts allowed: 6']; banner=Guess a number between 1 and 100. Attempts left: -4
