@@ -34,6 +34,10 @@ def start_new_game():
 
 def submit_guess():
     """Validate first, then apply exactly one attempt and its result."""
+    if st.session_state.get("_guess_submitted_this_run", False):
+        return
+    st.session_state._guess_submitted_this_run = True
+
     if st.session_state.status != "playing":
         return
     low, high = get_range_for_difficulty(st.session_state.difficulty)
@@ -71,6 +75,7 @@ st.sidebar.selectbox(
 )
 if "secret" not in st.session_state:
     start_new_game()
+st.session_state._guess_submitted_this_run = False
 
 difficulty = st.session_state.difficulty
 low, high = get_range_for_difficulty(difficulty)
@@ -89,7 +94,12 @@ left, right = st.columns(2)
 left.metric("Attempts left", max(0, attempt_limit - st.session_state.attempts))
 right.metric("Round score", st.session_state.score)
 finished = st.session_state.status != "playing"
-st.text_input("Enter your guess:", key="guess_input", disabled=finished)
+st.text_input(
+    "Enter your guess:",
+    key="guess_input",
+    disabled=finished,
+    on_change=submit_guess,
+)
 col1, col2, col3 = st.columns(3)
 with col1:
     st.button("Submit Guess 🚀", on_click=submit_guess, disabled=finished)

@@ -101,3 +101,10 @@ def test_unrelated_rerun_preserves_secret_and_round(game):
     assert game.session_state.attempts == 1
     assert len(game.session_state.history) == 1
     assert not game.warning
+
+
+def test_pressing_enter_on_text_input_submits_guess(game):
+    game.text_input[0].set_value("40").run()
+    assert game.session_state.attempts == 1
+    assert "higher" in game.warning[0].value.lower()
+

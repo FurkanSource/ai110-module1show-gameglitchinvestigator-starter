@@ -92,8 +92,8 @@ attempt. See `tests/test_app.py`.
 Actual run on October 10, 2026 (EDT), using `py -X utf8 -m pytest -q`:
 
 ```text
-.................................                                        [100%]
-33 passed in 11.30s
+..................................                                       [100%]
+34 passed in 20.90s
 ```
 
 All three original starter tests are unchanged and pass. The additional tests
